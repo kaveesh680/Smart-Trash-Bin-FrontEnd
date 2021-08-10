@@ -1,0 +1,92 @@
+@import './variables';
+
+.logIn {
+  font-size: 1em;
+  margin-top: 5em;
+  border-radius: 2em;
+  max-height: 615.2px;
+  overflow: no-content;
+
+  .needHelp {
+    p {
+      cursor: pointer;
+    }
+  }
+
+  .logoArea {
+    background-color: $login-header-color;
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    max-height: 615.2px;
+
+    .row {
+      margin-top: 8em;
+
+      img {
+        width: 14em;
+      }
+
+      p {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .logInHeader {
+    color: $login-header-color;
+  }
+
+  .formArea {
+    max-height: 615.2px;
+
+    .form-group {
+      label {
+        font-weight: 500;
+      }
+
+      input {
+        background-color: #ced4da;
+      }
+
+      small {
+        color: black !important;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+
+    .loginBtn {
+      button {
+        font-size: 1.3em;
+        min-width: 8em;
+        background-color: $login-header-color;
+        border-color: $login-header-color;
+      }
+    }
+
+    .newUser {
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: $layout-breakpoint-xs) {
+  .logIn {
+    margin-top: 0;
+    border-radius: 0;
+    max-height: fit-content;
+
+    .logoArea {
+      border-radius: 0;
+      max-height: fit-content;
+
+      .row {
+        margin-top: 2em;
+      }
+    }
+
+    .formArea {
+      max-height: fit-content;
+    }
+  }
+}
