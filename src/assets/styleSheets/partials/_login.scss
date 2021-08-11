@@ -45,11 +45,11 @@
       }
 
       input {
-        background-color: #ced4da;
+        background-color: $login-input-color;
       }
 
       small {
-        color: black !important;
+        color: $login-font-color !important;
         font-weight: 500;
         cursor: pointer;
       }

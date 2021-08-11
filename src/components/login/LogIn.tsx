@@ -1,6 +1,6 @@
 import React from "react";
 import {Container, Row} from "react-bootstrap";
-import LogoArea from "./LogoArea";
+import LogoArea from "../common/LogoArea";
 import FormArea from "./FormArea";
 
 const LogIn: React.FC = () => {

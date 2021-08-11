@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
-import LogInHeader from "./LogInHeader";
-import NeedHelp from "./NeedHelp";
+import LogInHeader from "../common/LogInHeader";
+import NeedHelp from "../common/NeedHelp";
 import {IUserLogInDetails} from "../../types/types";
 import {useHistory} from "react-router-dom";
 
@@ -31,14 +31,15 @@ const FormArea: React.FC = () => {
             email: email,
             password: password
         }
-        history.push('/user')
+        history.push('/user');
         console.log(user);
+        alert("successfully logged");
     }
 
     return (
         <Col md={8} xs={12} className='pt-md-3 pt-1'>
             <NeedHelp/>
-            <LogInHeader/>
+            <LogInHeader header="Log In" classname="logInHeader mb-md-5 mt-5"/>
             <Row className='mt-md-5 formArea'>
                 <Col md={{span: 8, offset: 2}} xs={12}>
                     <Form className='mb-md-2' noValidate validated={isFormValidated} onSubmit={handleOnSubmit}>
