@@ -17,7 +17,8 @@
     background-color: $login-header-color;
     border-top-left-radius: 2em;
     border-bottom-left-radius: 2em;
-    max-height: 615.2px;
+    height: 615.2px;
+
 
     .row {
       margin-top: 8em;
@@ -78,7 +79,7 @@
 
     .logoArea {
       border-radius: 0;
-      max-height: fit-content;
+      max-height: 25em;
 
       .row {
         margin-top: 2em;

@@ -2,16 +2,24 @@ import React, {useState} from "react";
 import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
 import LogInHeader from "../common/LogInHeader";
 import NeedHelp from "../common/NeedHelp";
-import {IUserLogInDetails} from "../../types/types";
+import {IUser, IUserLogInDetails} from "../../types/types";
 import {useHistory} from "react-router-dom";
+import {ApolloError, useMutation} from "@apollo/client";
+import {Sign_In} from "../../graphql/Mutation";
+import {useDispatch} from "react-redux";
+import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
+import {setUserRole} from "../../store/actions/StatusActions";
 
+toast.configure();
 const FormArea: React.FC = () => {
 
     const [isFormValidated, setIsFormValidated] = useState<boolean>(false);
     const [email, setEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
-
-    let history = useHistory();
+    const [signIn] = useMutation(Sign_In);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleOnEmailChange = (email: string) => {
         setEmail(email);
@@ -31,9 +39,42 @@ const FormArea: React.FC = () => {
             email: email,
             password: password
         }
-        history.push('/user');
-        console.log(user);
-        alert("successfully logged");
+        toast.info('🙄 Loading...');
+        signIn({
+            variables: user
+        }).then((res) => {
+            localStorage.setItem('token', `${res.data?.signIn.token}`);
+            toast.success('😍 Welcome');
+            if (res.data) {
+                let userData: IUser;
+                if (res.data.signIn.role === 'user') {
+                    userData = {
+                        id: res.data.signIn._id,
+                        name: res.data.signIn.name,
+                        role: res.data.signIn.role,
+                        area: null
+                    }
+                } else {
+                    console.log("dsdsd")
+                    userData = {
+                        id: res.data.signIn._id,
+                        name: res.data.signIn.name,
+                        role: res.data.signIn.role,
+                        area: res.data.signIn.area
+                    }
+                }
+                dispatch(setUserRole(userData));
+                if (res.data.signIn.role === "garbageCollector") {
+                    history.push('/garbage');
+                } else {
+                    history.push('/user');
+                }
+            } else {
+                dispatch(setUserRole(null));
+            }
+        }).catch((err: ApolloError) => {
+            toast.error('😪 Failed, User name or password error')
+        });
     }
 
     return (

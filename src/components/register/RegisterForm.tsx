@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, FormControl, Row} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
-import {IUSerRegisterDetails} from "../../types/types";
+import {IUser, IUSerRegisterDetails} from "../../types/types";
+import {Sign_Up} from "../../graphql/Mutation";
+import {ApolloError, useMutation} from "@apollo/client";
+import {useDispatch} from "react-redux";
+import {toast} from "react-toastify";
+import {setUserRole} from "../../store/actions/StatusActions";
 
 const RegisterForm: React.FC = () => {
 
@@ -11,8 +16,9 @@ const RegisterForm: React.FC = () => {
     const [email, setEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
     const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
-
-    let history = useHistory();
+    const [signUp] = useMutation(Sign_Up);
+    const dispatch = useDispatch()
+    const history = useHistory();
 
     const handleOnFirstNameChange = (firstName: string) => {
         setFirstName(firstName);
@@ -42,15 +48,46 @@ const RegisterForm: React.FC = () => {
             return
         }
         const userRegisterDetails: IUSerRegisterDetails = {
-            firstName: firstName,
-            lastName: lastName,
             email: email,
             password: password,
-            confirmPassword: confirmPassword
+            firstName: firstName,
+            lastName: lastName,
         }
-        console.log(userRegisterDetails);
-        alert("Successfully registered");
-        history.push('/');
+        toast.info('🙄 Loading...');
+        signUp({
+            variables: userRegisterDetails
+        }).then((res) => {
+            localStorage.setItem('token', `${res.data?.signUp.token}`);
+            toast.success('😍 Welcome');
+            if (res.data) {
+                let userData: IUser;
+                if (res.data.signUp.role === 'user') {
+                    userData = {
+                        id: res.data.signUp._id,
+                        name: res.data.signUp.name,
+                        role: res.data.signUp.role,
+                        area: null
+                    }
+                } else {
+                    userData = {
+                        id: res.data.signUp._id,
+                        name: res.data.signUp.name,
+                        role: res.data.signUp.role,
+                        area: res.data.signUp.area
+                    }
+                }
+                dispatch(setUserRole(userData));
+                if (res.data.signUp.role === "garbageCollector") {
+                    history.push('/garbage');
+                } else {
+                    history.push('/user');
+                }
+            } else {
+                dispatch(setUserRole(null));
+            }
+        }).catch((err: ApolloError) => {
+            toast.error('😪 Failed, User name or password error')
+        });
     }
 
     return (

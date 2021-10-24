@@ -1,0 +1,12 @@
+@import "variables";
+
+.loading {
+  font-size: 1em;
+  min-height: 15rem;
+  color: $logo-color;
+
+  label {
+    font-size: 2em;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,55 @@
+@import "variables";
+
+.topNavBar {
+  font-size: 1em;
+
+  .navbar {
+    border-bottom: none;
+
+    a {
+      font-size: .85em;
+      color: $nav-link-color;
+    }
+
+    button.navbar-toggler {
+      border: none;
+      padding-right: 6px;
+      padding-left: 0;
+    }
+
+    .navbar-collapse {
+      a {
+        font-size: .85em;
+        color: $nav-link-color;
+      }
+
+      button {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .logoArea {
+    border-top: 1px solid #C0C0C0;
+
+    span {
+      font-size: 3em;
+      font-weight: 600;
+      color: $logo-color;
+    }
+
+    .checkoutArea {
+      position: relative;
+
+      svg {
+        cursor: pointer;
+      }
+
+      button {
+        background-color: $logo-color;
+        border: none;
+        font-weight: 500;
+      }
+    }
+  }
+}

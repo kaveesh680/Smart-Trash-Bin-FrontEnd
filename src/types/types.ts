@@ -8,5 +8,25 @@ export interface IUSerRegisterDetails {
     lastName: string
     email: string
     password: string
-    confirmPassword: string
+}
+
+export interface IDisposeDetails {
+    id:string
+    date:string
+    numberOfBottles:number
+    energy:string
+    points:number
+}
+
+export interface ITrashBinDetails {
+    id:string
+    location:string
+    status:boolean
+}
+
+export interface IUser {
+    id:string
+    name:string
+    role:string
+    area:string | null
 }

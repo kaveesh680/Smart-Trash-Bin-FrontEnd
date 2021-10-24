@@ -1,9 +1,9 @@
 import React from "react";
 import {Container} from "react-bootstrap";
-import HeaderNavBar from "./HeaderNavBar";
-import LogoArea from "./LogoArea";
-import TableArea from "./TableArea";
-import {toast} from "react-toastify";
+import LogoArea from "../user/LogoArea";
+import HeaderNavBar from "../user/HeaderNavBar";
+import TrashBinTableArea from "./TrashBinTableArea";
+
 
 const Home: React.FC = () => {
     return (
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
                 <HeaderNavBar/>
                 <LogoArea/>
             </Container>
-            <TableArea/>
+            <TrashBinTableArea/>
         </React.Fragment>
     )
 }

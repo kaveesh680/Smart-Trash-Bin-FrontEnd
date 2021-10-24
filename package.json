@@ -3,21 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.4.7",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.19",
     "@types/react": "^17.0.16",
+    "@types/react-bootstrap-table-next": "^4.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.8",
     "bootstrap": "^4.6.0",
+    "graphql": "^15.6.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-bootstrap-table2-paginator": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-qr-code": "^2.0.2",
+    "react-redux": "^7.2.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-toastify": "^8.0.3",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
     "sass": "^1.37.5",
     "typescript": "^4.3.5",
     "web-vitals": "^1.1.2"
@@ -47,6 +57,7 @@
     ]
   },
   "devDependencies": {
-    "@types/node-sass": "^4.11.2"
+    "@types/node-sass": "^4.11.2",
+    "@types/react-bootstrap-table2-paginator": "^2.1.2"
   }
 }

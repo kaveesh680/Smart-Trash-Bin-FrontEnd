@@ -1,0 +1,99 @@
+@import "./variables";
+
+.adminTable {
+  font-size: 1em;
+
+  .card-body {
+
+    table {
+      border: none;
+
+      thead {
+        tr {
+          border-top: none;
+
+          th:first-child {
+            text-align: left;
+          }
+
+          th {
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            text-align: center;
+          }
+
+          th:nth-child(3) {
+            .date-filter {
+              label {
+                padding-right: 10px;
+              }
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          text-align: center;
+
+          td:first-child {
+            text-align: left;
+          }
+
+          td {
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  .react-bootstrap-table-pagination {
+    div {
+      span:first-child {
+        margin-right: 10px;
+      }
+    }
+
+    div:nth-child(2) {
+      ul {
+        float: right;
+      }
+    }
+
+    .react-bootstrap-table-pagination-list {
+      ul {
+        .active {
+          a {
+            background-color: $checkout-active-pagination-color;
+          }
+        }
+
+        li {
+          a {
+            color: $checkout-pagination-color;
+            border-color: $checkout-pagination-color;
+          }
+        }
+      }
+    }
+  }
+
+  .react-bootstrap-table table {
+    table-layout: auto;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: $layout-breakpoint-xs) {
+  .adminTable {
+    font-size: .8em;
+  }
+}
